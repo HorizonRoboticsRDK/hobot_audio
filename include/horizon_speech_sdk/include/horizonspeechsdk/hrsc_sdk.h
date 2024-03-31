@@ -328,7 +328,7 @@ int HrscStop(void *handle);
 int HrscRelease(void **handle);
 
 #ifdef __cplusplus
-}
+};
 #endif
 
 #endif //__HRSC_SDK_H__
