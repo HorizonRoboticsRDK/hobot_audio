@@ -40,9 +40,16 @@ Connection Steps:
 
 After starting RDK X3, connect to the robot via terminal SSH or VNC, copy and run the following commands on the RDK system to install related Nodes.
 
+tros foxy:
 ```bash
 sudo apt update
 sudo apt install -y tros-hobot-audio
+```
+
+tros humble:
+```bash
+sudo apt update
+sudo apt install -y tros-humble-hobot-audio
 ```
 
 ## Running Intelligent Voice Program
@@ -74,7 +81,15 @@ To run the hobot_audio package on the Horizon RDK board:
 
 1. Copy the configuration files
 
+   tros foxy:
     ```shell
+    # Copy the configuration files needed for running examples from the installation path of tros.b. This step can be ignored if already copied before.
+    cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
+    ```
+
+   tros humble:
+    ```shell
+    source /opt/tros/humble/setup.bash
     # Copy the configuration files needed for running examples from the installation path of tros.b. This step can be ignored if already copied before.
     cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
     ```
@@ -90,9 +105,22 @@ To run the hobot_audio package on the Horizon RDK board:
 
 3. Configure the tros.b environment and start the application
 
+    tros foxy:
     ```shell
     # Configure the tros.b environment
     source /opt/tros/setup.bash
+
+    # Suppress debug print information
+    export GLOG_minloglevel=3
+
+    # Start the launch file
+    ros2 launch hobot_audio hobot_audio.launch.py
+    ```
+
+    tros humble:
+    ```shell
+    # Configure the tros.b humble environment
+    source /opt/tros/humble/setup.bash
 
     # Suppress debug print information
     export GLOG_minloglevel=3

@@ -40,9 +40,16 @@
 
 启动RDK X3后，通过终端SSH或者VNC连接机器人，复制如下命令在RDK的系统上运行，完成相关Node的安装。
 
+tros foxy 版本
 ```bash
 sudo apt update
 sudo apt install -y tros-hobot-audio
+```
+
+tros humble 版本
+```bash
+sudo apt update
+sudo apt install -y tros-humble-hobot-audio
 ```
 
 ## 运行智能语音程序
@@ -73,8 +80,16 @@ sudo apt install -y tros-hobot-audio
 地平线RDK板端运行hobot_audio package：
 
 1. 拷贝配置文件
-
+    
+    tros foxy 版本
     ```shell
+    # 从tros.b的安装路径中拷贝出运行示例需要的配置文件，若已拷贝过则可忽略
+    cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
+    ```
+
+    tros humble 版本
+    ```shell
+    source /opt/tros/humble/setup.bash
     # 从tros.b的安装路径中拷贝出运行示例需要的配置文件，若已拷贝过则可忽略
     cp -r /opt/tros/${TROS_DISTRO}/lib/hobot_audio/config/ .
     ```
@@ -90,9 +105,22 @@ sudo apt install -y tros-hobot-audio
 
 3. 配置tros.b环境和启动应用
 
+    tros foxy 版本
     ```shell
     # 配置tros.b环境
     source /opt/tros/setup.bash
+
+    # 屏蔽调式打印信息
+    export GLOG_minloglevel=3
+
+    #启动launch文件
+    ros2 launch hobot_audio hobot_audio.launch.py
+    ```
+
+    tros humble 版本
+    ```shell
+    # 配置tros.b humble环境
+    source /opt/tros/humble/setup.bash
 
     # 屏蔽调式打印信息
     export GLOG_minloglevel=3
