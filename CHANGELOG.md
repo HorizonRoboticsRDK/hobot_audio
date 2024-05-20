@@ -1,5 +1,13 @@
 # Changelog for package hobot_audio
 
+tros_2.3.1 (2024-5-20)
+------------------
+1. 更新语音SDK.
+
+tros_2.3.0 (2024-4-10)
+------------------
+1. 适配新版本libdnn(1.18.4)
+
 tros_2.2.1 (2024-03-06)
 ------------------
 1. 更新README，拷贝的配置文件路径由`/opt/tros/lib`变更为`/opt/tros/${TROS_DISTRO}/lib`。
