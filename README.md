@@ -2,7 +2,7 @@ English| [简体中文](./README_cn.md)
 
 # Function Introduction
 
-Horizon Intelligent Voice Algorithm adopts local offline mode, subscribes to audio data for processing by BPU, and then publishes messages such as **wake-up, command word recognition**, **sound source localization DOA angle information**, and **voice ASR recognition results**. The implementation of intelligent voice function corresponds to the **hobot_audio** package of TogetheROS.Bot, which is suitable for the microphone array matched with the Horizon RDK.
+D-Robotics Intelligent Voice Algorithm adopts local offline mode, subscribes to audio data for processing by BPU, and then publishes messages such as **wake-up, command word recognition**, **sound source localization DOA angle information**, and **voice ASR recognition results**. The implementation of intelligent voice function corresponds to the **hobot_audio** package of TogetheROS.Bot, which is suitable for the microphone array matched with the D-Robotics RDK.
 
 Application Scenarios: The intelligent voice algorithm can recognize wake-up words and custom command words in audio, interpret the voice content into corresponding instructions or convert it into text, enabling functions such as voice control and voice translation. It is mainly used in smart home, smart cabin, smart wearable devices, and other fields.
 
@@ -10,7 +10,7 @@ Application Scenarios: The intelligent voice algorithm can recognize wake-up wor
 
 | Robot Name   | Manufacturer | Reference Link                                                  |
 | :----------- | ------------ | --------------------------------------------------------------- |
-| RDK X3       | Multiple     | [Click to Jump](https://developer.horizon.cc/rdkx3)              |
+| RDK X3       | Multiple     | [Click to Jump](https://developer.D-Robotics.cc/rdkx3)              |
 | 4mic Microphone Array   | Waveshare Electronics | [Click to Jump](https://www.waveshare.net/shop/Audio-Driver-HAT.htm) |
 | 2mic Microphone Array   | Waveshare Electronics | [Click to Jump](https://www.waveshare.net/shop/WM8960-Audio-HAT.htm) |
 
@@ -20,12 +20,12 @@ Application Scenarios: The intelligent voice algorithm can recognize wake-up wor
 
 Before experiencing, you need to meet the following basic requirements:
 
-- Horizon RDK has burned the Ubuntu 20.04 system image provided by Horizon.
+- D-Robotics RDK has burned the Ubuntu 20.04 system image provided by D-Robotics.
 - The audio board is correctly connected to RDK X3.
 
 Connection Steps:
 
-1. Connect the microphone array to the 40PIN GPIO interface of Horizon RDK X3. The physical appearance after connection is as follows:
+1. Connect the microphone array to the 40PIN GPIO interface of D-Robotics RDK X3. The physical appearance after connection is as follows:
     - 4mic Microphone Array
 
     ![circle_mic_full](./imgs/circle_mic_full.png)
@@ -34,7 +34,7 @@ Connection Steps:
 
     ![circle_mic_full](./imgs/2mic_full.jpg)
 
-2. Configure the microphone array, refer to RDK User Manual [Audio Adapter](https://developer.horizon.cc/documents_rdk/hardware_development/rdk_x3/audio_board) section.
+2. Configure the microphone array, refer to RDK User Manual [Audio Adapter](https://developer.D-Robotics.cc/documents_rdk/hardware_development/rdk_x3/audio_board) section.
 
 ## Installation of Function Package
 
@@ -59,7 +59,7 @@ The intelligent voice function supports ASR recognition after denoising the orig
 ```json
 {
     "cmd_word": [
-        "Horizon hello",
+        "D-Robotics hello",
         "Move forward",
         "Move backward",
         "Turn left",
@@ -77,7 +77,7 @@ The relative positional relationship of angles is strongly correlated with the m
 
 ![doa_circle](./imgs/doa_circle.jpg)
 
-To run the hobot_audio package on the Horizon RDK board:
+To run the hobot_audio package on the D-Robotics RDK board:
 
 1. Copy the configuration files
 
@@ -130,7 +130,7 @@ To run the hobot_audio package on the Horizon RDK board:
     ```
 4. Result Analysis
 
-    The output information of the Horizon RDK board end terminal is as follows:
+    The output information of the D-Robotics RDK board end terminal is as follows:
 
     ```text
     alsa_device_init, snd_pcm_open. handle((nil)), name(hw:0,0), direct(1), mode(0)
@@ -147,7 +147,7 @@ To run the hobot_audio package on the Horizon RDK board:
 
     The above log shows that the audio device initialization was successful, and the audio device was opened for audio capture.
 
-    When a person successively says the command words "地平线你好" (Horizon, hello), "向前走" (Move forward), "向左转" (Turn left), "向右转" (Turn right), "向后退" (Move backward) near the microphone, the voice algorithm SDK outputs the recognition results after intelligent processing, as shown in the log:
+    When a person successively says the command words "地平线你好", "向前走" (Move forward), "向左转" (Turn left), "向右转" (Turn right), "向后退" (Move backward) near the microphone, the voice algorithm SDK outputs the recognition results after intelligent processing, as shown in the log:
 
     ```text
     recv hrsc sdk event wakeup success, wkp count is 1
@@ -189,7 +189,7 @@ To run the hobot_audio package on the Horizon RDK board:
 
 | Name         | Message Type                                                                                                            | Description                                           |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| /audio_smart | [audio_msg/msg/SmartAudioData](https://github.com/HorizonRDK/hobot_msgs/blob/develop/audio_msg/msg/SmartAudioData.msg) | Publish data and results processed by smart audio      |
+| /audio_smart | [audio_msg/msg/SmartAudioData](https://github.com/D-RoboticsRDK/hobot_msgs/blob/develop/audio_msg/msg/SmartAudioData.msg) | Publish data and results processed by smart audio      |
 | /audio_asr   | std_msgs/msg/String                                                                                                     | Publish ASR recognition results                        |
 
 ## Parameters
@@ -224,14 +224,12 @@ This configuration file configures wake-up words and command words for the speec
 ```json
 {
     "cmd_word": [
-        "Hello Horizon",
-        "Go forward",
-        "Go back",```json
-{
-    "commands": [
-        "Turn left",
-        "Turn right",
-        "Stop moving"
+        "地平线你好",
+        "向前走",
+        "向后退",
+        "向左转",
+        "向右转",
+        "停止运动"
     ]
 }
 ```
